@@ -364,7 +364,7 @@ void callEffect() {
             tremeloEffect();
             break;
     }
-    if (printEffect == 1) printEffect = effect;
+    if (printEffect == 1) printEffect = 0;
 }
 
 int main(int argc, char **argv)

@@ -154,6 +154,8 @@ uint8_t PUSH2_val;
 
 uint8_t effect=0;  // Set the default effect to Clean
 uint8_t effectStrength=0;
+uint8_t lastEffect = 0;
+uint8_t lastEffectStrength = 0;
 
 void changeEffectStrength() {
     if (PUSH1_val==0) {
@@ -163,8 +165,8 @@ void changeEffectStrength() {
         } else if (effectStrength >= 12) {
             effectStrength = 0;
         }
+        printf("Effect Strength: %d\n", effectStrength);
     }
-    printf("Effect Strength: %d\n", effectStrength);
 }
 
 void changeEffectType() {
@@ -318,49 +320,50 @@ void callEffect() {
     }
     switch (effect) {
         case 0:
-            printf("Mode: Clean");
+            if (lastEffect != effect) printf("Mode: Clean");
             break;
         case 1:
-            printf("Mode: BitCrusher");
+            if (lastEffect != effect) printf("Mode: BitCrusher");
             bitCrusherEffect();
             break;
         case 2:
-            printf("Mode: Booster");
+            if (lastEffect != effect) printf("Mode: Booster");
             boosterEffect();
             break;
         case 3:
-            printf("Mode: Delay");
+            if (lastEffect != effect) printf("Mode: Delay");
             delayEffect();
             break;
         case 4:
-            printf("Mode: Distortion");
+            if (lastEffect != effect) printf("Mode: Distortion");
             distortionEffect();
             break;
         case 5:
-            printf("Mode: Fuzz");
+            if (lastEffect != effect) printf("Mode: Fuzz");
             fuzzEffect();
             break;
         case 6:
-            printf("Mode: Echo");
+            if (lastEffect != effect) printf("Mode: Echo");
             echoEffect();
             break;
         case 7:
-            printf("Mode: Looper");
+            if (lastEffect != effect) printf("Mode: Looper");
             looperEffect();
             break;
         case 8:
-            printf("Mode: Octaver");
+            if (lastEffect != effect) printf("Mode: Octaver");
             octaverEffect();
             break;
         case 9:
-            printf("Mode: Reverb");
+            if (lastEffect != effect) printf("Mode: Reverb");
             reverbEffect();
             break;
         case 10:
-            printf("Mode: Tremelo");
+            if (lastEffect != effect) printf("Mode: Tremelo");
             tremeloEffect();
             break;
     }
+    lastEffect = effect;
 }
 
 int main(int argc, char **argv)

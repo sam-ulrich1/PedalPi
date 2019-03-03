@@ -49,11 +49,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="192" column="5" lean-forward="true" selection-start-line="192" selection-start-column="5" selection-end-line="192" selection-end-column="5" />
+            <state relative-caret-position="563">
+              <caret line="191" column="63" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="63" />
               <folding>
                 <element signature="e#303#323#0" expanded="true" />
               </folding>
@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/effects/distortion.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="78" column="21" lean-forward="true" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+            <state relative-caret-position="1215">
+              <caret line="82" column="4" lean-forward="true" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -101,6 +101,7 @@
       <find>lenght</find>
       <find>divider</find>
       <find>FOOT_SWITCH_val</find>
+      <find>Effect St</find>
     </findStrings>
     <replaceStrings>
       <replace>length</replace>
@@ -197,12 +198,12 @@
       <updated>1551561089809</updated>
       <workItem from="1551561092159" duration="6923000" />
       <workItem from="1551577730549" duration="798000" />
-      <workItem from="1551580754031" duration="1737000" />
+      <workItem from="1551580754031" duration="2049000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9458000" />
+    <option name="totallyTimeSpent" value="9770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="234" y="1136" width="1400" height="1000" extended-state="0" />
@@ -290,20 +291,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.c">
+    <entry file="file://$PROJECT_DIR$/src/effects/distortion.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="192" column="5" lean-forward="true" selection-start-line="192" selection-start-column="5" selection-end-line="192" selection-end-column="5" />
-          <folding>
-            <element signature="e#303#323#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1215">
+          <caret line="82" column="4" lean-forward="true" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/effects/distortion.c">
+    <entry file="file://$PROJECT_DIR$/src/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="78" column="21" lean-forward="true" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        <state relative-caret-position="563">
+          <caret line="191" column="63" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="63" />
+          <folding>
+            <element signature="e#303#323#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

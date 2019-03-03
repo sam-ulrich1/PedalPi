@@ -321,46 +321,46 @@ void callEffect() {
     }
     switch (effect) {
         case 0:
-            if (printEffect == 1) printf("Mode: Clean");
+            if (printEffect == 1) printf("Mode: Clean\n");
             break;
         case 1:
-            if (printEffect == 1) printf("Mode: BitCrusher");
+            if (printEffect == 1) printf("Mode: BitCrusher\n");
             bitCrusherEffect();
             break;
         case 2:
-            if (printEffect == 1) printf("Mode: Booster");
+            if (printEffect == 1) printf("Mode: Booster\n");
             boosterEffect();
             break;
         case 3:
-            if (printEffect == 1) printf("Mode: Delay");
+            if (printEffect == 1) printf("Mode: Delay\n");
             delayEffect();
             break;
         case 4:
-            if (printEffect == 1) printf("Mode: Distortion");
+            if (printEffect == 1) printf("Mode: Distortion\n");
             distortionEffect();
             break;
         case 5:
-            if (printEffect == 1) printf("Mode: Fuzz");
+            if (printEffect == 1) printf("Mode: Fuzz\n");
             fuzzEffect();
             break;
         case 6:
-            if (printEffect == 1) printf("Mode: Echo");
+            if (printEffect == 1) printf("Mode: Echo\n");
             echoEffect();
             break;
         case 7:
-            if (printEffect == 1) printf("Mode: Looper");
+            if (printEffect == 1) printf("Mode: Looper\n");
             looperEffect();
             break;
         case 8:
-            if (printEffect == 1) printf("Mode: Octaver");
+            if (printEffect == 1) printf("Mode: Octaver\n");
             octaverEffect();
             break;
         case 9:
-            if (printEffect == 1) printf("Mode: Reverb");
+            if (printEffect == 1) printf("Mode: Reverb\n");
             reverbEffect();
             break;
         case 10:
-            if (printEffect == 1) printf("Mode: Tremelo");
+            if (printEffect == 1) printf("Mode: Tremelo\n");
             tremeloEffect();
             break;
     }

@@ -28,6 +28,9 @@
 #define DELAY_MAX 10000000
 #define DELAY_MIN 0
 
+uint8_t PUSH1_val;
+uint8_t PUSH2_val;
+
 // Booster Variables
 uint32_t booster_value = 2047;
 
@@ -180,10 +183,10 @@ void readHardware() {
     if (read_timer==50000)
     {
         read_timer=0;
-        uint8_t PUSH1_val = bcm2835_gpio_lev(PUSH1);
-        uint8_t PUSH2_val = bcm2835_gpio_lev(PUSH2);
+        PUSH1_val = bcm2835_gpio_lev(PUSH1);
+        PUSH2_val = bcm2835_gpio_lev(PUSH2);
         TOGGLE_SWITCH_val = bcm2835_gpio_lev(TOGGLE_SWITCH);
-        uint8_t FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
+        FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
         bcm2835_gpio_write(LED,!FOOT_SWITCH_val); //light the effect when the footswitch is activated.
         changeEffectType();
         changeEffectStrength();

@@ -178,6 +178,7 @@ void changeEffectType() {
             effect = 0;
         }
         printEffect = 1;
+        DelayCounter=0;
     }
 }
 
@@ -236,11 +237,9 @@ void fuzzEffect() {
 void looperEffect() {
     if (effectStrength % 2 != 0) {
         recording=1;
-        DelayCounter=0;
     } else {
         recording=0;
         record_length=DelayCounter;
-        DelayCounter=0;
     }
     if (recording==1)
     {//start recording

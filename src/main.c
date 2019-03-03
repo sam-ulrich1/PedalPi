@@ -25,7 +25,8 @@
 #define LED   			RPI_V2_GPIO_P1_36 	//GPIO16
 
 //Define Delay Effect parameters MAX_DELAY 800000 is 4 seconds approx.
-#define DELAY_MAX 10000000
+#define LOOP_MAX 10000000
+#define DELAY_MAX 800000
 #define DELAY_MIN 0
 
 uint8_t PUSH1_val;
@@ -49,6 +50,7 @@ uint32_t DelayCounter = 0;
 uint32_t Delay_Depth = 100000; //default starting delay is 100000 is 0.5 sec approx.
 
 // Looper Variables
+uint32_t Loop_Buffer[LOOP_MAX];
 uint32_t recording=0;
 uint32_t record_length=100;
 uint32_t delay;
@@ -243,14 +245,14 @@ void looperEffect() {
     }
     if (recording==1)
     {//start recording
-        Delay_Buffer[DelayCounter] = input_signal;
+        Loop_Buffer[DelayCounter] = input_signal;
         DelayCounter++;
         bcm2835_gpio_write(LED,!FOOT_SWITCH_val);
         //if(DelayCounter >= Delay_Depth) DelayCounter = 0;
     }
     else
     {//bypass mode
-        input_signal = (Delay_Buffer[DelayCounter]+input_signal)>>1;
+        input_signal = (Loop_Buffer[DelayCounter]+input_signal)>>1;
         DelayCounter++;
         if (DelayCounter>record_length)DelayCounter=0;
         bcm2835_gpio_write(LED,FOOT_SWITCH_val);

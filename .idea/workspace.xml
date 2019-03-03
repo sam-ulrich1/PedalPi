@@ -52,11 +52,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="242" column="5" lean-forward="true" selection-start-line="242" selection-start-column="5" selection-end-line="242" selection-end-column="5" />
+            <state relative-caret-position="178">
+              <caret line="242" column="20" lean-forward="true" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
               <folding>
                 <element signature="e#303#323#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/effects/octaver.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/effects/delay.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -102,9 +116,11 @@
       <find>divider</find>
       <find>FOOT_SWITCH_val</find>
       <find>Effect St</find>
+      <find>lastEffect == 1</find>
     </findStrings>
     <replaceStrings>
       <replace>length</replace>
+      <replace>printEffect == 1</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -198,12 +214,12 @@
       <updated>1551561089809</updated>
       <workItem from="1551561092159" duration="6923000" />
       <workItem from="1551577730549" duration="798000" />
-      <workItem from="1551580754031" duration="3639000" />
+      <workItem from="1551580754031" duration="5165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11360000" />
+    <option name="totallyTimeSpent" value="12886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="234" y="1136" width="1400" height="1000" extended-state="0" />
@@ -267,9 +283,7 @@
     <entry file="file://$PROJECT_DIR$/src/effects/echo.c" />
     <entry file="file://$PROJECT_DIR$/src/effects/fuzz.c" />
     <entry file="file://$PROJECT_DIR$/src/effects/looper.c" />
-    <entry file="file://$PROJECT_DIR$/src/effects/delay.c" />
     <entry file="file://$PROJECT_DIR$/src/effects/reverb.c" />
-    <entry file="file://$PROJECT_DIR$/src/effects/octaver.c" />
     <entry file="file://$PROJECT_DIR$/src/effects/tremolo.c" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/PedalPi2.cbp" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" />
@@ -298,10 +312,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/effects/delay.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/effects/octaver.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="242" column="5" lean-forward="true" selection-start-line="242" selection-start-column="5" selection-end-line="242" selection-end-column="5" />
+        <state relative-caret-position="178">
+          <caret line="242" column="20" lean-forward="true" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
           <folding>
             <element signature="e#303#323#0" expanded="true" />
           </folding>

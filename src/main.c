@@ -161,6 +161,7 @@ void changeEffectStrength() {
             effectStrength = 0;
         }
     }
+    printf("Effect Strength: %d\n", effectStrength);
 }
 
 void changeEffectType() {
@@ -185,7 +186,7 @@ void readHardware() {
         uint8_t FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
         bcm2835_gpio_write(LED,!FOOT_SWITCH_val); //light the effect when the footswitch is activated.
         changeEffectType();
-        changeEffectType();
+        changeEffectStrength();
     }
 }
 
@@ -314,35 +315,46 @@ void callEffect() {
     }
     switch (effect) {
         case 0:
+            printf("Mode: Clean");
             break;
         case 1:
+            printf("Mode: BitCrusher");
             bitCrusherEffect();
             break;
         case 2:
+            printf("Mode: Booster");
             boosterEffect();
             break;
         case 3:
+            printf("Mode: Delay");
             delayEffect();
             break;
         case 4:
+            printf("Mode: Distortion");
             distortionEffect();
             break;
         case 5:
+            printf("Mode: Fuzz");
             fuzzEffect();
             break;
         case 6:
+            printf("Mode: Echo");
             echoEffect();
             break;
         case 7:
+            printf("Mode: Looper");
             looperEffect();
             break;
         case 8:
+            printf("Mode: Octaver");
             octaverEffect();
             break;
         case 9:
+            printf("Mode: Reverb");
             reverbEffect();
             break;
         case 10:
+            printf("Mode: Tremelo");
             tremeloEffect();
             break;
     }
@@ -362,6 +374,14 @@ int main(int argc, char **argv)
         printf("bcm2835_spi_begin failed. Are you running as root??\n");
         return 1;
     }
+
+    if (effect == 0) {
+        printf("Mode: Clean");
+    } else {
+        printf("Mode Number: %d\n", effect);
+    }
+
+    printf("Effect Strength: %d\n", effectStrength);
 
     //define PWM
     bcm2835_gpio_fsel(18,BCM2835_GPIO_FSEL_ALT5 ); //PWM0 signal on GPIO18

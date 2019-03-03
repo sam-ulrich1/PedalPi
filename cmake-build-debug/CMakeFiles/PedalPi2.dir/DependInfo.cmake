@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/user/Development/Projects/PedalPi2/src/main.c" "/home/user/Development/Projects/PedalPi2/cmake-build-debug/CMakeFiles/PedalPi2.dir/src/main.c.o"
+  "/home/user/Development/Projects/PedalPi/src/main.c" "/home/user/Development/Projects/PedalPi/cmake-build-debug/CMakeFiles/PedalPi2.dir/src/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

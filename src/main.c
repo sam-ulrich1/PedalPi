@@ -110,7 +110,7 @@ void callEffect() {
             break;
         case 1:
             if (printEffect == 1) printf("Mode: BitCrusher\n");
-            bitCrusherEffect(input_signal, bitcrushing_value);
+            input_signal = bitCrusherEffect(input_signal, bitcrushing_value);
             break;
 //        case 2:
 //            if (printEffect == 1) printf("Mode: Booster\n");

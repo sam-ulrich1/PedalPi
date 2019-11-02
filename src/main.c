@@ -4,6 +4,8 @@
 #include <bcm2835.h>
 #include <stdio.h>
 
+#include "./include/bitcrusher.h"
+
 // Define Input Pins
 #define PUSH1 			RPI_GPIO_P1_08  	//GPIO14
 #define PUSH2 			RPI_V2_GPIO_P1_38  	//GPIO20
@@ -11,9 +13,14 @@
 #define FOOT_SWITCH 	RPI_GPIO_P1_10 		//GPIO15
 #define LED   			RPI_V2_GPIO_P1_36 	//GPIO16
 
-uint8_t effectCount = 1;
+uint8_t printEffect = 1;
+uint8_t  effect = 0;
+uint8_t effectCount = 2;
 uint32_t read_timer=0;
 uint32_t input_signal=0;
+
+// Effect Variables
+uint32_t bitcrushing_value=1;
 
 uint8_t FOOT_SWITCH_val;
 uint8_t TOGGLE_SWITCH_val;
@@ -28,7 +35,121 @@ void changeEffectType() {
         } else if (effect == effectCount) {
             effect = 0;
         }
+        printEffect = 1;
     }
+}
+
+void updateEffectStrength() {
+    if (PUSH1_val==0) {
+        switch (effect) {
+            case 0:
+                break;
+            case 1:
+                bitcrushing_value = updateBitCrush(bitcrushing_value);
+                break;
+//        case 2:
+//            if (printEffect == 1) printf("Mode: Booster\n");
+//            boosterEffect();
+//            break;
+//        case 3:
+//            if (printEffect == 1) printf("Mode: Delay\n");
+//            delayEffect();
+//            break;
+//        case 4:
+//            if (printEffect == 1) printf("Mode: Distortion\n");
+//            distortionEffect();
+//            break;
+//        case 5:
+//            if (printEffect == 1) printf("Mode: Fuzz\n");
+//            fuzzEffect();
+//            break;
+//        case 6:
+//            if (printEffect == 1) printf("Mode: Echo\n");
+//            echoEffect();
+//            break;
+//        case 7:
+//            if (printEffect == 1) printf("Mode: Looper\n");
+//            looperEffect();
+//            break;
+//        case 8:
+//            if (printEffect == 1) printf("Mode: Octaver\n");
+//            octaverEffect();
+//            break;
+//        case 9:
+//            if (printEffect == 1) printf("Mode: Reverb\n");
+//            reverbEffect();
+//            break;
+//        case 10:
+//            if (printEffect == 1) printf("Mode: Tremelo\n");
+//            tremeloEffect();
+//            break;
+        }
+    }
+}
+
+void readHardware() {
+    read_timer++;
+    if (read_timer==50000)
+    {
+        read_timer=0;
+        PUSH1_val = bcm2835_gpio_lev(PUSH1);
+        PUSH2_val = bcm2835_gpio_lev(PUSH2);
+        TOGGLE_SWITCH_val = bcm2835_gpio_lev(TOGGLE_SWITCH);
+        FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
+        bcm2835_gpio_write(LED,!FOOT_SWITCH_val); //light the effect when the footswitch is activated.
+        changeEffectType();
+        updateEffectStrength();
+    }
+}
+
+void callEffect() {
+//    if (effect == 7) { Delay_Depth = 50000; } else { Delay_Depth = 100000; }
+    switch (effect) {
+        case 0:
+            if (printEffect == 1) printf("Mode: Clean\n");
+            break;
+        case 1:
+            if (printEffect == 1) printf("Mode: BitCrusher\n");
+            bitCrusherEffect(input_signal, bitcrushing_value);
+            break;
+//        case 2:
+//            if (printEffect == 1) printf("Mode: Booster\n");
+//            boosterEffect();
+//            break;
+//        case 3:
+//            if (printEffect == 1) printf("Mode: Delay\n");
+//            delayEffect();
+//            break;
+//        case 4:
+//            if (printEffect == 1) printf("Mode: Distortion\n");
+//            distortionEffect();
+//            break;
+//        case 5:
+//            if (printEffect == 1) printf("Mode: Fuzz\n");
+//            fuzzEffect();
+//            break;
+//        case 6:
+//            if (printEffect == 1) printf("Mode: Echo\n");
+//            echoEffect();
+//            break;
+//        case 7:
+//            if (printEffect == 1) printf("Mode: Looper\n");
+//            looperEffect();
+//            break;
+//        case 8:
+//            if (printEffect == 1) printf("Mode: Octaver\n");
+//            octaverEffect();
+//            break;
+//        case 9:
+//            if (printEffect == 1) printf("Mode: Reverb\n");
+//            reverbEffect();
+//            break;
+//        case 10:
+//            if (printEffect == 1) printf("Mode: Tremelo\n");
+//            tremeloEffect();
+//            break;
+    }
+    if (printEffect == 1) printEffect = 0;
 }
 
 int main(int argc, char **argv)
@@ -83,20 +204,9 @@ int main(int argc, char **argv)
         bcm2835_spi_transfernb(mosi, miso, 3);
         input_signal = miso[2] + ((miso[1] & 0x0F) << 8);
 
-        //Read the PUSH buttons every 50000 times (0.25s) to save resources.
-        read_timer++;
-        if (read_timer==50000)
-        {
-            read_timer=0;
-            uint8_t PUSH1_val = bcm2835_gpio_lev(PUSH1);
-            uint8_t PUSH2_val = bcm2835_gpio_lev(PUSH2);
-            TOGGLE_SWITCH_val = bcm2835_gpio_lev(TOGGLE_SWITCH);
-            uint8_t FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
-            bcm2835_gpio_write(LED,!FOOT_SWITCH_val); //light the effect when the footswitch is activated.
-        }
+        readHardware();
 
-        //**** CLEAN EFFECT ***///
-        //Nothing to do, the input_signal goes directly to the PWM output.
+        callEffect();
 
         //generate output PWM signal 6 bits
         bcm2835_pwm_set_data(1,input_signal & 0x3F);

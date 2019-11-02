@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/PedalPi2.dir/src/main.c.o  -o PedalPi2 

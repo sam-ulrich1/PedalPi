@@ -64,41 +64,43 @@ int main(int argc, char **argv)
 	
 	while(1) //Main Loop
 	{
-	//read 12 bits ADC
-    bcm2835_spi_transfernb(mosi, miso, 3);
-    input_signal = miso[2] + ((miso[1] & 0x0F) << 8); 
+        //read 12 bits ADC
+        bcm2835_spi_transfernb(mosi, miso, 3);
+        input_signal = miso[2] + ((miso[1] & 0x0F) << 8);
 
-	//Read the PUSH buttons every 50000 times (0.25s) to save resources.
-	read_timer++;
-	if (read_timer==50000)
-	{
-	read_timer=0;
-	uint8_t PUSH1_val = bcm2835_gpio_lev(PUSH1);
-	uint8_t PUSH2_val = bcm2835_gpio_lev(PUSH2);
-    TOGGLE_SWITCH_val = bcm2835_gpio_lev(TOGGLE_SWITCH);
-	uint8_t FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
-	//light the effect when the footswitch is activated.
-	bcm2835_gpio_write(LED,!FOOT_SWITCH_val); 
-	
-	//update booster_value when the PUSH1 or 2 buttons are pushed.
-	if (PUSH2_val==0)
-		{ bcm2835_delay(100); //100ms delay for buttons debouncing
-         if (bitcrushing_value<12) bitcrushing_value++;
-		}
-		else if (PUSH1_val==0) 
-			{bcm2835_delay(100); //100ms delay for buttons debouncing.
-			if (bitcrushing_value>0) bitcrushing_value--;
-			}
-	}
+        //Read the PUSH buttons every 50000 times (0.25s) to save resources.
+        read_timer++;
+        if (read_timer==50000)
+        {
+            read_timer=0;
+            uint8_t PUSH1_val = bcm2835_gpio_lev(PUSH1);
+            uint8_t PUSH2_val = bcm2835_gpio_lev(PUSH2);
+            TOGGLE_SWITCH_val = bcm2835_gpio_lev(TOGGLE_SWITCH);
+            uint8_t FOOT_SWITCH_val = bcm2835_gpio_lev(FOOT_SWITCH);
+            //light the effect when the footswitch is activated.
+            bcm2835_gpio_write(LED,!FOOT_SWITCH_val);
 
-	//**** BITCRUSHING EFFECT ***///
-	//The input_signal gets a  a bit shift operation "<<" 
-	//The number of bits shifted are defined by bitcrushing_value
-    output_signal= input_signal<<bitcrushing_value;
-	
-	//generate output PWM signal 6 bits
-    bcm2835_pwm_set_data(1,output_signal & 0x3F);
-    bcm2835_pwm_set_data(0,output_signal >> 6);
+            //update booster_value when the PUSH1 or 2 buttons are pushed.
+            if (PUSH2_val==0)
+            {
+                bcm2835_delay(100); //100ms delay for buttons debouncing
+                if (bitcrushing_value<12) bitcrushing_value++;
+            }
+            else if (PUSH1_val==0)
+            {
+                bcm2835_delay(100); //100ms delay for buttons debouncing.
+                if (bitcrushing_value>0) bitcrushing_value--;
+            }
+        }
+
+        //**** BITCRUSHING EFFECT ***///
+        //The input_signal gets a  a bit shift operation "<<"
+        //The number of bits shifted are defined by bitcrushing_value
+        output_signal= input_signal<<bitcrushing_value;
+
+        //generate output PWM signal 6 bits
+        bcm2835_pwm_set_data(1,output_signal & 0x3F);
+        bcm2835_pwm_set_data(0,output_signal >> 6);
     }
 	
 	//close all and exit
